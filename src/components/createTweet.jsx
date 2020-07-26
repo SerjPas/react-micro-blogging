@@ -12,11 +12,14 @@ class CreateTweet extends React.Component {
   handleOnChange(event) {
     this.setState({tweetInput: event.target.value})
   }
+  handleOnSubmit(event) {
+    event.preventDefault();
+  }
 
   render() {
     return (
       <Card style = {{width: "600px", height: "180px"}}>
-        <form>
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
           <label htmlFor="tweet"></label>
           <Input
             className="input"
