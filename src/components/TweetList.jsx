@@ -23,10 +23,11 @@ const TweetList = (props) => {
     <List>
       {props.tweets.map((item) => (
         <ListItem style={{paddingLeft:"0", paddingRight:"0"}} key={item.id} dense>
-          <Card className={classes.root} style = {{width: "600px", minHeight: "100px"}}>
+          <Card className={classes.root} style = {{minHeight: "100px"}}>
             <CardActions>
               <span>yonatan</span>
-              <span style={{marginLeft:"auto"}}>{item.date.toLocaleString()}</span>
+              <span style={{marginLeft:"auto"}}>{item.date}</span>
+              {console.log(item)}
             </CardActions>
             <CardActionArea>
               <CardContent>

@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Error140 from "./Error140";
 import Grid from "@material-ui/core/Grid";
+import { getUsers } from "../lib/api";
 
 class CreateTweet extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class CreateTweet extends React.Component {
       this.props.addTweet({
         id: Date.now() + "",
         text: this.state.tweetInput,
-        date: new Date(Date.now()),
+        date: new Date().toISOString(),
       });
     }
     //clear input after submit
