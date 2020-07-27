@@ -23,6 +23,7 @@ code {
 .card-backgraund {
   background-color: #343a40;
 }
+
 .form {
   display: flex;
   flex-direction: column;
@@ -36,6 +37,7 @@ code {
   margin: 20px;
   align-self: flex-end;
 }
+
 .error140 {
   left: 16px;
   position: relative;
@@ -53,7 +55,8 @@ code {
   line-height: 19px;
   color: #721c24;
 }
-.error{
+
+.error {
   background: #f8d7da;
   border: 1px solid #f5c6cb;
   box-sizing: border-box;
@@ -65,7 +68,8 @@ code {
   line-height: 19px;
   color: #721c24;
 }
-.card{
+
+.card {
   width: 600px;
   height: 180px;
   color: white;

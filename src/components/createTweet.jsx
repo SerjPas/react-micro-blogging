@@ -1,11 +1,7 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import { Card, TextField, Button, Grid } from "@material-ui/core";
 import Error140 from "./Error140";
-import Grid from "@material-ui/core/Grid";
-import { createTweet } from "../lib/api";
-import { getTweets } from "../lib/api";
+import { createTweet, getTweets } from "../lib/api";
 import { trackPromise } from "react-promise-tracker";
 
 class CreateTweet extends React.Component {
@@ -69,8 +65,9 @@ class CreateTweet extends React.Component {
             name="tweetInput"
             placeholder="What you have in mind..."
             value={this.state.tweetInput}
-            onChange={event => this.setState({ tweetInput: event.target.value })}
-
+            onChange={(event) =>
+              this.setState({ tweetInput: event.target.value })
+            }
             required
           />
           <Grid container spacing={3}>
