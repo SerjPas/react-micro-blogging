@@ -25,8 +25,8 @@ const TweetList = (props) => {
         <ListItem style={{paddingLeft:"0", paddingRight:"0"}} key={item.id}>
           <Card className={classes.root} style = {{minHeight: "100px"}}>
             <CardActions>
-              <span>{item.userName}</span>
-              <span style={{marginLeft:"auto"}}>{item.date}</span>
+              <span style={{color: "#6C757D"}}>{item.userName}</span>
+              <span style={{marginLeft:"auto", color: "#6C757D"}}>{item.date}</span>
             </CardActions>
             <CardActionArea>
               <CardContent>

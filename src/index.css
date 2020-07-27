@@ -65,3 +65,10 @@ code {
   line-height: 19px;
   color: #721c24;
 }
+.card{
+  width: 600px;
+  height: 180px;
+  color: white;
+  background-color: "#343A40";
+  border: 2px solid white;
+}
