@@ -53,3 +53,15 @@ code {
   line-height: 19px;
   color: #721c24;
 }
+.error{
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #721c24;
+}

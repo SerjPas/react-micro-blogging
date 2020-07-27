@@ -21,19 +21,18 @@ const TweetList = (props) => {
   const classes = useStyles();
   return (
     <List>
-      {props.tweets.map((item) => (
-        <ListItem style={{paddingLeft:"0", paddingRight:"0"}} key={item.id} dense>
+      {props.tweets.map(item => (
+        <ListItem style={{paddingLeft:"0", paddingRight:"0"}} key={item.id}>
           <Card className={classes.root} style = {{minHeight: "100px"}}>
             <CardActions>
-              <span>yonatan</span>
+              <span>{item.userName}</span>
               <span style={{marginLeft:"auto"}}>{item.date}</span>
-              {console.log(item)}
             </CardActions>
             <CardActionArea>
               <CardContent>
-                <Typography>{item.text}</Typography>
+                <Typography>{item.content}</Typography>
               </CardContent>
-            </CardActionArea>
+            </CardActionArea> 
           </Card>
         </ListItem>
       ))}

@@ -4,7 +4,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Error140 from "./Error140";
 import Grid from "@material-ui/core/Grid";
-import { getUsers } from "../lib/api";
+import { createTweet } from "../lib/api";
+import { getTweets } from "../lib/api";
+import { trackPromise } from "react-promise-tracker";
 
 class CreateTweet extends React.Component {
   constructor(props) {
@@ -21,15 +23,28 @@ class CreateTweet extends React.Component {
       });
     }
   }
-  handleOnSubmit(event) {
+  async handleOnSubmit(event) {  
     event.preventDefault();
     if (this.state.tweetInput !== "") {
-      this.props.addTweet({
-        id: Date.now() + "",
-        text: this.state.tweetInput,
+      trackPromise(
+      createTweet({
+        content: this.state.tweetInput,
         date: new Date().toISOString(),
-      });
-    }
+        userName: "Serhii",
+      }).catch((err) => {
+        this.props.setErrorMessege(err.message);
+      })
+      .then(() => {
+        // debugger;
+        getTweets().then((respond) => {
+          const { data } = respond;
+          this.props.addTweets(data.tweets)
+        });
+      })
+      .catch((err) => {
+        this.ptops.setErrorMessege(err.message);
+      })
+      )}
     //clear input after submit
     this.setState({
       tweetInput: "",
@@ -64,7 +79,7 @@ class CreateTweet extends React.Component {
           />
           <Grid container spacing={3}>
             <Grid item xs>
-              {this.state.tweetInput.length == 140 ? (
+              {this.state.tweetInput.length === 140 ? (
                 <Error140 />
               ) : (
                 <span></span>
@@ -73,7 +88,7 @@ class CreateTweet extends React.Component {
             <Grid item>
               <Button
                 className="submit-buttton"
-                disabled={this.state.tweetInput.length == 140}
+                disabled={this.state.tweetInput.length === 140}
                 type="submit"
                 variant="contained"
                 color="primary"
