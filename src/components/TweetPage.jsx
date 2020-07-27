@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
 import CreateTweet from "./createTweet";
+import TweetList from "./TweetList";
 
 class TweetPage extends Component {
   constructor(props) {
@@ -9,11 +10,37 @@ class TweetPage extends Component {
       tweets: [],
     };
   }
+  componentDidMount() {
+    const list = localStorage.getItem("savedList");
+    const parsedList = JSON.parse(list);
+    this.setState({
+      tweets: parsedList,
+    });
+  }
+
+  addTweet(tweet) {
+    if (tweet.text !== "") {
+      this.setState(
+        (state) => {
+          return {
+            tweets: [tweet, ...state.tweets],
+          };
+        },
+        () => {
+          localStorage.setItem(
+            "savedList",
+            JSON.stringify(this.state.tweets)
+          );
+        }
+      );
+    }
+  }
   render() {
     return (
       <div>
         <Container maxWidth="sm">
-          <CreateTweet ></CreateTweet>
+          <CreateTweet addTweet={(tweet) => this.addTweet(tweet)}></CreateTweet>
+          <TweetList tweets={this.state.tweets}></TweetList>
         </Container>
       </div>
     );

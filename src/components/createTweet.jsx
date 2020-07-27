@@ -1,7 +1,10 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
-import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Error140 from "./Error140";
+import Grid from "@material-ui/core/Grid";
+
 class CreateTweet extends React.Component {
   constructor(props) {
     super(props);
@@ -9,19 +12,46 @@ class CreateTweet extends React.Component {
       tweetInput: "",
     };
   }
+
   handleOnChange(event) {
-    this.setState({tweetInput: event.target.value})
+    if (event.target.value !== "") {
+      this.setState({
+        tweetInput: event.target.value,
+      });
+    }
   }
   handleOnSubmit(event) {
     event.preventDefault();
+    if (this.state.tweetInput !== "") {
+      this.props.addTweet({
+        id: Date.now() + "",
+        text: this.state.tweetInput,
+        date: new Date(Date.now()),
+      });
+    }
+    //clear input after submit
+    this.setState({
+      tweetInput: "",
+    });
   }
 
   render() {
     return (
-      <Card style = {{width: "600px", height: "180px"}}>
-        <form onSubmit={(event) => this.handleOnSubmit(event)}>
-          <label htmlFor="tweet"></label>
-          <Input
+      <Card
+        style={{
+          width: "600px",
+          height: "180px",
+          color: "white",
+          backgroundColor: "#343A40",
+        }}
+      >
+        <form className="form" onSubmit={(event) => this.handleOnSubmit(event)}>
+          <TextField
+            inputProps={{ maxLength: 140, style: { color: "white" } }}
+            multiline
+            maxLength={140}
+            style={{ width: "100%" }}
+            rows={9}
             className="input"
             autoFocus
             id="tweet"
@@ -29,18 +59,28 @@ class CreateTweet extends React.Component {
             placeholder="What you have in mind..."
             value={this.state.tweetInput}
             onChange={(event) => this.handleOnChange(event)}
-            inputProps={{ "aria-label": "description" }}
             required
           />
-          <Button
-            disabled={this.state.tweetInput.length > 140}
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{ marginLeft: "10px" }}
-          >
-            Tweet
-          </Button>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              {this.state.tweetInput.length == 140 ? (
+                <Error140 />
+              ) : (
+                <span></span>
+              )}
+            </Grid>
+            <Grid item>
+              <Button
+                className="submit-buttton"
+                disabled={this.state.tweetInput.length == 140}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Tweet
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Card>
     );

@@ -1,2 +1,11 @@
+.input {
+  width: 234px;
+  height: 41px;
+}
+.tweet-border {
+  border: 2px solid white;
+}
 
-
+.card-backgraund {
+  background-color: #343a40;
+}
