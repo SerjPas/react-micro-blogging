@@ -29,7 +29,6 @@ function App() {
             </Switch>
         </Container>
       </Router>
-
     </div>
 
   );

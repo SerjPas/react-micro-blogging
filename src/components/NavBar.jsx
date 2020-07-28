@@ -22,12 +22,11 @@ function NavBar() {
             </Typography>
           </Link>
 
-          <Link  to="/profile">
+          <Link style={{textDecoration: "none" }}  to="/profile">
             <Typography
               style={{
                 marginLeft: "45px",
-                color: "white",
-                textDecoration: "none",
+                color: "white"
               }}
               variant="h5"
               color="inherit"

@@ -39,18 +39,15 @@ class TweetPage extends Component {
     }
   }
   addTweets(arr) {
-    this.setState((state) => {
-      return {
-        tweets: arr,
-      };
+    this.setState({
+      tweets: arr,
     });
   }
-  
-  setErrorMessege(error){
+
+  setErrorMessege(error) {
     this.setState({
-        errorMessage: error,
-      }
-    )
+      errorMessage: error,
+    });
   }
 
   render() {
@@ -58,7 +55,7 @@ class TweetPage extends Component {
       <div>
         <Container maxWidth="sm">
           <CreateTweet
-            setErrorMessege = {(error)=>this.setErrorMessege(error)}
+            setErrorMessege={(error) => this.setErrorMessege(error)}
             addTweets={(tweets) => this.addTweets(tweets)}
             addTweet={(tweet) => this.addTweet(tweet)}
           ></CreateTweet>

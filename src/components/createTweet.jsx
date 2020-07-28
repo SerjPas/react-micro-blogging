@@ -48,6 +48,7 @@ class CreateTweet extends React.Component {
     return (
       <Card
         style={{
+          marginTop: "47px",
           border: "2px solid white",
           height: "180px",
           color: "white",
