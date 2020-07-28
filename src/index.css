@@ -34,7 +34,7 @@ code {
   bottom: -84px;
   width: 68px;
   height: 34px;
-  margin: 20px;
+  left: -20px;
   align-self: flex-end;
 }
 
@@ -112,4 +112,25 @@ code {
 
 .margin-top-52px {
   margin-top: 52px;
+}
+
+.create-tweet-card {
+  margin-top: 47px;
+  border: 2px solid white;
+  height: 180px;
+  color: white;
+  background-color: #343a40;
+}
+
+.input {
+  width: 234px;
+  height: 41px;
+}
+
+.tweet-border {
+  border: 2px solid white;
+}
+
+.card-backgraund {
+  background-color: #343a40;
 }
