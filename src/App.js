@@ -5,7 +5,7 @@ import TweetPage from './components/TweetPage';
 import NavBar from './components/NavBar';
 import Container from 'react-bootstrap/Container'
 import UserProfile from './components/UserProfile';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 
 function App() {
@@ -14,19 +14,18 @@ function App() {
       <Router>
         <CssBaseline />
         <Container>
-            <NavBar></NavBar>
+            <NavBar/>
             <Switch>
               <Route path="/profile">
                 <UserProfile />
               </Route>
               <Route path="/">
-                <TweetPage></TweetPage>
+                <TweetPage />
               </Route>
             </Switch>
         </Container>
       </Router>
     </div>
-
   );
 }
 
