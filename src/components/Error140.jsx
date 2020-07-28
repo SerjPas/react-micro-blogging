@@ -1,10 +1,8 @@
-import React from 'react'
+import React from "react";
 
-function Error140() {
-    
-    return (
-        <div className="error140">The tweet can't contain more then 140 chars.</div>
-    )
+const Error140 = () => {
+  return (
+    <div className="error140">The tweet can't contain more then 140 chars.</div>
+  );
 }
-
-export default Error140
+export default Error140;
