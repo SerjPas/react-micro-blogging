@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 600,
+    minWidth: "100%",
     backgroundColor: "#343A40",
     color: "white"
   }

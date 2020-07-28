@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <Row>
+    <Row style={{justifyContent: "center", display: "flex"}}>
       <AppBar
-        style={{ backgroundColor: "#343A40", borderRadius: "6px" }}
+        style={{ backgroundColor: "#343A40", borderRadius: "6px", width: "80%", alignSelf:"center" }}
         position="static"
       >
         <Toolbar>
@@ -22,7 +22,7 @@ function NavBar() {
             </Typography>
           </Link>
 
-          <Link style={{textDecoration: "none" }} to="/profile">
+          <Link  to="/profile">
             <Typography
               style={{
                 marginLeft: "45px",

@@ -14,12 +14,14 @@ class CreateTweet extends React.Component {
 
   async handleOnSubmit(event) {
     event.preventDefault();
+    const list = localStorage.getItem("userName");
+    const parsedList = JSON.parse(list);
     if (this.state.tweetInput !== "") {
       trackPromise(
         createTweet({
           content: this.state.tweetInput,
           date: new Date().toISOString(),
-          userName: "Serhii",
+          userName: parsedList,
         })
           .catch((err) => {
             this.props.setErrorMessege(err.message);
@@ -47,7 +49,6 @@ class CreateTweet extends React.Component {
       <Card
         style={{
           border: "2px solid white",
-          width: "600px",
           height: "180px",
           color: "white",
           backgroundColor: "#343A40",

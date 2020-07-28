@@ -76,6 +76,40 @@ code {
   background-color: "#343A40";
   border: 2px solid white;
 }
-.nav{
+.nav {
   display: flex;
+}
+
+.user-form {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.user-profile-button {
+  width: 68px;
+  height: 34px;
+  background: #007bff;
+  border-radius: 4px;
+  align-self: flex-end;
+}
+
+.h3-custom {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+}
+
+.h1-custom {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.margin-top-52px {
+  margin-top: 52px;
 }
