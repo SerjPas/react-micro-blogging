@@ -5,28 +5,30 @@ import Typography from "@material-ui/core/Typography";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+const NavBar = () => {
   return (
-    <Row style={{justifyContent: "center", display: "flex"}}>
+    <Row style={{ justifyContent: "center", display: "flex" }}>
       <AppBar
-        style={{ backgroundColor: "#343A40", borderRadius: "6px", width: "80%", alignSelf:"center" }}
+        style={{
+          backgroundColor: "#343A40",
+          borderRadius: "6px",
+          width: "80%",
+          alignSelf: "center",
+        }}
         position="static"
       >
         <Toolbar>
-          <Link style={{textDecoration: "none" }} to="/">
-            <Typography
-              variant="h5"
-              style={{ color: "white"}}
-            >
+          <Link style={{ textDecoration: "none" }} to="/">
+            <Typography variant="h5" style={{ color: "white" }}>
               Home
             </Typography>
           </Link>
 
-          <Link style={{textDecoration: "none" }}  to="/profile">
+          <Link style={{ textDecoration: "none" }} to="/profile">
             <Typography
               style={{
                 marginLeft: "45px",
-                color: "white"
+                color: "white",
               }}
               variant="h5"
               color="inherit"
@@ -38,6 +40,6 @@ function NavBar() {
       </AppBar>
     </Row>
   );
-}
+};
 
 export default NavBar;
