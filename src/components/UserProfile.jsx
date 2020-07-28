@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Container } from "@material-ui/core";
 
-function UserProfile() {
+const UserProfile = () => {
   const [name, setName] = useState("");
 
   const handleOnSubmit = async (event) => {
@@ -46,6 +46,6 @@ function UserProfile() {
       </form>
     </Container>
   );
-}
+};
 
 export default UserProfile;
