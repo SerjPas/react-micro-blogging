@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Card, TextField, Button, Grid } from "@material-ui/core";
 import Error140 from "./Error140";
-import { createTweet, getTweets } from "../lib/api";
+import { createTweet } from "../lib/api";
 import { trackPromise } from "react-promise-tracker";
 import TweetContext from "./TweetContext";
 
@@ -27,15 +27,6 @@ const CreateTweet = () => {
           .catch((err) => {
             contex.setErrorMessege(err.message);
           })
-          // .then(() => {
-          //   getTweets().then((respond) => {
-          //     const { data } = respond;
-          //     contex.addTweets(data.tweets);
-          //   });
-          // })
-          // .catch((err) => {
-          //   contex.setErrorMessege(err.message);
-          // })
       );
     }
     //clear input after submit

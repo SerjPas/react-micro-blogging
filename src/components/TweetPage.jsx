@@ -5,24 +5,30 @@ import TweetList from "./TweetList";
 import LoadingIndicator from "./Loader";
 import TweetContext from "./TweetContext";
 import { getTweets } from "../lib/api";
-import { trackPromise } from "react-promise-tracker";
+import { usePromiseTracker } from "react-promise-tracker";
 
 const TweetPage = () => {
   const [tweets, setTweets] = useState([]);
+  const [load, setLoad] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const { promiseInProgress } = usePromiseTracker();
 
   useEffect(() => {
-    trackPromise(
-      getTweets()
-        .then((response) => {
-          const { data } = response;
-          setTweets(data.tweets);
-        })
-        .catch((err) => {
-          setErrorMessage(err.message);
-        })
+    setInterval(
+      () =>
+        getTweets()
+          .then((response) => {
+            const { data } = response;
+            setTweets(data.tweets);
+            setLoad(false)
+          })
+          .catch((err) => {
+            setErrorMessage(err.message);
+          }),
+      1000
     );
-  }, []);
+    
+  },[]);
 
   const addTweet = (tweet) => {
     setTweets([tweet, ...tweets]);
@@ -41,10 +47,10 @@ const TweetPage = () => {
     >
       <div>
         <Container maxWidth="sm">
-          <CreateTweet/>
-          <LoadingIndicator />
+          <CreateTweet />
+          {promiseInProgress || load ? <LoadingIndicator /> : ""}
           {errorMessage && <h3 className="error">{errorMessage}</h3>}
-          <TweetList/>
+          <TweetList />
         </Container>
       </div>
     </TweetContext.Provider>
