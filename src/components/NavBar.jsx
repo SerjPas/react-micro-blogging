@@ -6,13 +6,13 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+
   return (
-    <Row style={{ justifyContent: "center", display: "flex" }}>
+    <Row>
       <AppBar
         style={{
           backgroundColor: "#343A40",
           borderRadius: "6px",
-          width: "80%",
           alignSelf: "center",
         }}
         position="static"
@@ -26,12 +26,12 @@ const NavBar = () => {
 
           <Link style={{ textDecoration: "none" }} to="/">
             <Typography
+              variant="h5"
               style={{
                 marginLeft: "45px",
                 color: "white",
               }}
-              variant="h5"
-              color="inherit"
+             
             >
               Profile
             </Typography>

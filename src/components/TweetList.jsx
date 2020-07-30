@@ -34,7 +34,7 @@ const TweetList = () => {
             </CardActions>
             <CardActionArea>
               <CardContent>
-                <Typography>{item.content}</Typography>
+                <Typography style = {{wordWrap: "break-word"}}>{item.content}</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
