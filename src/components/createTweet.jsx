@@ -10,7 +10,9 @@ const CreateTweet = () => {
   const contex = useContext(TweetContext);
  
   const handleOnSubmit = async (event) => {
-    event.preventDefault();
+     if (event) {
+       event.preventDefault();
+      }
     const list = localStorage.getItem("userName");
     const parsedList = JSON.parse(list);
     if (tweetInput !== "") {
@@ -32,6 +34,13 @@ const CreateTweet = () => {
     //clear input after submit
     setTweetInput("");
   };
+  
+  const onEnterPress = (event) => {
+    if(event.keyCode === 13 && event.shiftKey === false) {
+      event.preventDefault();
+      handleOnSubmit();
+    }
+  }
 
   return (
         <Card
@@ -42,6 +51,7 @@ const CreateTweet = () => {
       >
         <form className="form" onSubmit={handleOnSubmit}>
           <TextField
+            onKeyDown={onEnterPress}
             inputProps={{ maxLength: 140, style: { color: "white" } }}
             multiline
             style={{ width: "100%" }}

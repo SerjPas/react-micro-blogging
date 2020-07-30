@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Button, Input, Container } from "@material-ui/core";
+import { Button, Input, Container, Typography } from "@material-ui/core";
 
 const UserProfile = () => {
   const [name, setName] = useState("");
+  const [logedIn, setlogedIn] = useState(false);
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
     localStorage.setItem("userName", JSON.stringify(name));
+    setlogedIn(true)
     setName("");
   };
 
@@ -16,7 +18,8 @@ const UserProfile = () => {
 
   return (
     <Container style={{ width: "76%" }}>
-      <form className="user-form" onSubmit={handleOnSubmit}>
+      {!logedIn ? (
+        <form className="user-form" onSubmit={handleOnSubmit}>
         <h1 className="margin-top-52px, h1-custom">Profile</h1>
         <h3 className="h3-custom">User Name</h3>
         <label htmlFor="userName"></label>
@@ -44,6 +47,19 @@ const UserProfile = () => {
           Save
         </Button>
       </form>
+      ):(<div>
+        <Typography
+              style={{
+                margin: "45px",
+                color: "white",
+              }}
+              variant="h5"
+              color="inherit"
+            >
+              You successfully logged in!
+              </Typography>
+              </div>)}
+      
     </Container>
   );
 };

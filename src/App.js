@@ -16,10 +16,10 @@ function App() {
         <Container>
             <NavBar/>
             <Switch>
-              <Route path="/profile">
+              <Route exact path="/">
                 <UserProfile />
               </Route>
-              <Route path="/">
+              <Route path="/tweets">
                 <TweetPage />
               </Route>
             </Switch>

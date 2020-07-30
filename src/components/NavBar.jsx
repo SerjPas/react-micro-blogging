@@ -18,13 +18,13 @@ const NavBar = () => {
         position="static"
       >
         <Toolbar>
-          <Link style={{ textDecoration: "none" }} to="/">
+          <Link style={{ textDecoration: "none" }} to="/tweets">
             <Typography variant="h5" style={{ color: "white" }}>
               Home
             </Typography>
           </Link>
 
-          <Link style={{ textDecoration: "none" }} to="/profile">
+          <Link style={{ textDecoration: "none" }} to="/">
             <Typography
               style={{
                 marginLeft: "45px",
