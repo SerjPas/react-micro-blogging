@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import CreateTweet from "./createTweet";
-import TweetList from "./TweetList";
-import LoadingIndicator from "./Loader";
-import TweetContext from "./TweetContext";
+import CreateTweet from "../components/createTweet";
+import TweetList from "../components/TweetList";
+import LoadingIndicator from "../components/Loader";
+import TweetContext from "../components/TweetContext";
 import { getTweets } from "../lib/api";
 import { usePromiseTracker } from "react-promise-tracker";
 

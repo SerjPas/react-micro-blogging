@@ -18,6 +18,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 firebase.analytics();
 
+export const auth = firebase.auth;
+export const db = firebase.database();
 
 ReactDOM.render(
   <React.StrictMode>

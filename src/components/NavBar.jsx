@@ -1,45 +1,40 @@
-import React from "react";
+import React, {useContext} from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+import UserContext from "../context/UserContext";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import NavBarMenu from "./NavBarMenu";
 
 const NavBar = () => {
+    const userContext = useContext(UserContext)
 
-  return (
-    <Row>
-      <AppBar
-        style={{
-          backgroundColor: "#343A40",
-          borderRadius: "6px",
-          alignSelf: "center",
-        }}
-        position="static"
-      >
-        <Toolbar>
-          <Link style={{ textDecoration: "none" }} to="/tweets">
-            <Typography variant="h5" style={{ color: "white" }}>
-              Home
-            </Typography>
-          </Link>
+    return (
 
-          <Link style={{ textDecoration: "none" }} to="/">
-            <Typography
-              variant="h5"
-              style={{
-                marginLeft: "45px",
-                color: "white",
-              }}
-             
+        <Row>
+            <AppBar
+                style={{
+                    backgroundColor: "#343A40",
+                    borderRadius: "6px",
+                    alignSelf: "center",
+                }}
+                position="static"
             >
-              Profile
-            </Typography>
-          </Link>
-        </Toolbar>
-      </AppBar>
-    </Row>
-  );
+                <Toolbar>
+                    {userContext.currentUser && <NavBarMenu />}
+                    {userContext.currentUser ?
+                        (<div className="logout-login">
+                            {<ExitToAppIcon onClick={userContext.handleLogout}/>}
+                            {!userContext.currentUser && (<Redirect to={{pathname: '/'}}/>)}
+                        </div>) : (<Link className="logout-login" style={{textDecoration: "none", color: "white"}} to="/login">
+                            Log in
+                        </Link>)}
+                </Toolbar>
+            </AppBar>
+        </Row>
+    );
 };
 
 export default NavBar;
+

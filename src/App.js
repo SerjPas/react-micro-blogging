@@ -1,12 +1,14 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
-import TweetPage from './components/TweetPage';
+import TweetPage from './Pages/TweetPage';
 import NavBar from './components/NavBar';
 import Container from 'react-bootstrap/Container'
-import UserProfile from './components/UserProfile';
+import UserProfile from './Pages/UserProfile';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
 
 
 function App() {
@@ -21,11 +23,11 @@ function App() {
             </Grid>
           </Grid>
           <Switch>
-            <Route exact path="/">
-              <UserProfile />
+            <Route exact path="/signup">
+              <Signup/>
             </Route>
-            <Route path="/tweets">
-              <TweetPage />
+            <Route exact path="/login">
+              <Login />
             </Route>
           </Switch>
         </Container>
