@@ -8,7 +8,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import "../App.css";
 import { makeStyles } from "@material-ui/core/styles";
-import TweetContext from "./TweetContext";
+import TweetContext from "../context/TweetContext";
+import UserContext from "../context/UserContext";
 
 const useStyles = makeStyles({
   root: {
@@ -21,26 +22,34 @@ const useStyles = makeStyles({
 const TweetList = () => {
   const classes = useStyles();
   const contex = useContext(TweetContext);
+  const userContex = useContext(UserContext);
+  console.log(userContex)
   return (
-    <List>
-      {contex.tweets.map((item) => (
-        <ListItem style={{ paddingLeft: "0", paddingRight: "0" }} key={item.id}>
-          <Card className={classes.root} style={{ minHeight: "100px" }}>
-            <CardActions>
-              <span style={{ color: "#6C757D" }}>{item.userName}</span>
-              <span style={{ marginLeft: "auto", color: "#6C757D" }}>
+      <List className="form-revers">
+        {contex.tweets.map((item) => (
+            <ListItem key={item.id} style={{ paddingLeft: "0", paddingRight: "0" }} >
+              <Card className={classes.root} style={{ minHeight: "100px" }}>
+                <CardActions>
+                  <span style={{ color: "#6C757D" }}>{item.userName}</span>
+                  <span style={{ marginLeft: "auto", color: "#6C757D" }}>
                 {item.date}
               </span>
-            </CardActions>
-            <CardActionArea>
-              <CardContent>
-                <Typography style = {{wordWrap: "break-word"}}>{item.content}</Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </ListItem>
-      ))}
-    </List>
+                </CardActions>
+                <CardActionArea>
+                  <div className="user-image-holder">
+                    <img
+                        src={userContex.currentUser.photoURL}
+                    />
+                    <CardContent className="message-bubble">
+                      <Typography style = {{wordWrap: "break-word"}}>{item.content}</Typography>
+                    </CardContent>
+                  </div>
+
+                </CardActionArea>
+              </Card>
+            </ListItem>
+        ))}
+      </List>
   );
 };
 export default TweetList;

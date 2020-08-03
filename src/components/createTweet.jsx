@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
-import { Card, TextField, Button } from "@material-ui/core";
+import React, {useState, useContext} from "react";
+import {Card, TextField, Button} from "@material-ui/core";
 import Error140 from "./Error140";
-import { createTweet } from "../lib/api";
-import { trackPromise } from "react-promise-tracker";
-import TweetContext from "./TweetContext";
-import { makeStyles } from "@material-ui/styles";
+import TweetContext from "../context/TweetContext";
+import {makeStyles} from "@material-ui/styles";
+import {db} from "../index";
+import UserContext from "../context/UserContext";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -30,32 +30,27 @@ const CreateTweet = () => {
   const classes = useStyles();
   const [tweetInput, setTweetInput] = useState("");
   const contex = useContext(TweetContext);
+  const userContex = useContext(UserContext);
 
   const handleOnSubmit = async (event) => {
     if (event) {
       event.preventDefault();
     }
-    const list = localStorage.getItem("userName");
-    const parsedList = JSON.parse(list);
+
     if (tweetInput !== "") {
-      trackPromise(
-        createTweet({
+      try {
+        contex.handleLoad(true)
+        await db.ref("tweets").push({
+          id: Date.now(),
           content: tweetInput,
           date: new Date().toISOString(),
-          userName: parsedList,
-        })
-          .then((respond) => {
-            const { data } = respond;
-            console.log(data);
-            contex.addTweet(data);
-          })
-          .catch((err) => {
-            contex.setErrorMessege(err.message);
-          })
-      );
+          userName: userContex.currentUser.displayName || userContex.currentUser.email,
+        });
+        setTweetInput('');
+      } catch (error) {
+        contex.handleErrorMessage(error.message);
+      }
     }
-    //clear input after submit
-    setTweetInput("");
   };
 
   const onEnterPress = (event) => {
@@ -66,39 +61,37 @@ const CreateTweet = () => {
   };
 
   return (
-    <Card
-      // className="create-tweet-card"
-      className={classes.root}
-    >
-      <form className="form" onSubmit={handleOnSubmit}>
-        <TextField
-          onKeyDown={onEnterPress}
-          inputProps={{ maxLength: 140, style: { color: "white" } }}
-          multiline
-          style={{ width: "100%" }}
-          rows={9}
-          className="input"
-          autoFocus
-          id="tweet"
-          name="tweetInput"
-          placeholder="What you have in mind..."
-          value={tweetInput}
-          onChange={(event) => setTweetInput(event.target.value)}
-          required
-        />
-        {tweetInput.length === 140 ? <Error140 /> : <span></span>}
-        <Button
-          // className="submit-buttton"
-          className={classes.button}
-          disabled={tweetInput.length === 140}
-          type="submit"
-          variant="contained"
-          color="primary"
-        >
-          Tweet
-        </Button>
-      </form>
-    </Card>
+      <Card
+          className={classes.root}
+      >
+        <form className="form" onSubmit={handleOnSubmit}>
+          <TextField
+              onKeyDown={onEnterPress}
+              inputProps={{maxLength: 140, style: {color: "white"}}}
+              multiline
+              style={{width: "100%"}}
+              rows={9}
+              className="tweet-input"
+              autoFocus
+              id="tweet"
+              name="tweetInput"
+              placeholder="What you have in mind..."
+              value={tweetInput}
+              onChange={(event) => setTweetInput(event.target.value)}
+              required
+          />
+          {tweetInput.length === 140 && <Error140/>}
+          <Button
+              className={classes.button}
+              disabled={tweetInput.length === 140}
+              type="submit"
+              variant="contained"
+              color="primary"
+          >
+            Tweet
+          </Button>
+        </form>
+      </Card>
   );
 };
 export default CreateTweet;

@@ -42,7 +42,9 @@
     ]
   },
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@material-ui/styles": "^4.10.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/israeltechchallenge/react-micro-blogging-SerjPas.git"
