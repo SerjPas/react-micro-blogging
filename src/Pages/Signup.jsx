@@ -35,8 +35,15 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleSubmit() {
-
+    async function handleSubmit(event) {
+        event.preventDefault();
+        setError('');
+        try {
+            const user = await signup(email, password);
+            console.log(user)
+        } catch (error) {
+            setError(error.message);
+        }
     }
 
     function handleChangeEmail(event) {
@@ -51,7 +58,7 @@ const SignUp = () => {
     return (
         <Container className={classes.container}>
             <div className={classes.root}>
-                <form className="form" onSubmit={handleSubmit}>
+                <form className="form" onSubmit={(event => handleSubmit(event))}>
                     <h1>
                         Sign Up
                         <Link to="/"> MicroBlog</Link>
