@@ -8,56 +8,57 @@ import {usePromiseTracker} from "react-promise-tracker";
 import {db} from "../index";
 
 const TweetPage = () => {
-  const [tweets, setTweets] = useState([]);
-  const [load, setLoad] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
-  const {promiseInProgress} = usePromiseTracker();
+    const [tweets, setTweets] = useState([]);
+    const [load, setLoad] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
+    const {promiseInProgress} = usePromiseTracker();
 
-  useEffect(() => {
-    try {
-      db.ref("tweets").on("value", snapshot => {
-        let tweets = [];
-        snapshot.forEach((snap) => {
-          tweets.push(snap.val());
-        });
-        setTweets(tweets);
-        setLoad(false)
-      });
-    } catch (error) {
-      setErrorMessage(error.message);
+    useEffect(() => {
+        try {
+
+            db.ref("tweets").limitToLast(5).on("value", snapshot => {
+                let tweets = [];
+                snapshot.forEach((snap) => {
+                    tweets.push(snap.val());
+                });
+                setTweets(tweets);
+                setLoad(false)
+            });
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
+    }, []);
+
+
+    const addTweet = (tweet) => {
+        setTweets([tweet, ...tweets]);
+    };
+
+    const addTweets = (arr) => {
+        setTweets(arr);
+    };
+    const handleErrorMessage = (error) => {
+        setErrorMessage(error);
+    };
+
+    const handleLoad = (bool) => {
+        setLoad(bool);
     }
-  }, []);
 
-
-  const addTweet = (tweet) => {
-    setTweets([tweet, ...tweets]);
-  };
-
-  const addTweets = (arr) => {
-    setTweets(arr);
-  };
-  const handleErrorMessage = (error) => {
-    setErrorMessage(error);
-  };
-
-  const handleLoad = (bool) => {
-    setLoad(bool);
-  }
-
-  return (
-      <TweetContext.Provider
-          value={{tweets, handleLoad, addTweet, addTweets, handleErrorMessage}}
-      >
-        <div>
-          <Container maxWidth="sm">
-            <CreateTweet/>
-            {promiseInProgress || load ? <LoadingIndicator/> : ""}
-            {errorMessage && <h3 className="error">{errorMessage}</h3>}
-            <TweetList/>
-          </Container>
-        </div>
-      </TweetContext.Provider>
-  );
+    return (
+        <TweetContext.Provider
+            value={{tweets, handleLoad, addTweet, addTweets, handleErrorMessage}}
+        >
+            <div>
+                <Container maxWidth="sm">
+                    <CreateTweet/>
+                    {promiseInProgress || load ? <LoadingIndicator/> : ""}
+                    {errorMessage && <h3 className="error">{errorMessage}</h3>}
+                    <TweetList/>
+                </Container>
+            </div>
+        </TweetContext.Provider>
+    );
 };
 
 export default TweetPage;
