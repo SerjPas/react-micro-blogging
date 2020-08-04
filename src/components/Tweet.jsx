@@ -7,6 +7,7 @@ import CardActions from "@material-ui/core/CardActions";
 import {makeStyles} from "@material-ui/core/styles";
 import UserContext from "../context/UserContext";
 import * as firebase from "firebase";
+import {Typography} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
@@ -53,7 +54,7 @@ const Tweet = (props) => {
                             alt={user ? user.displayName : ""}
                         />
                         <CardContent>
-                            <p>{props.tweet.content}</p>
+                            <Typography>{props.tweet.content}</Typography>
                         </CardContent>
                     </div>
                 </CardActionArea>
