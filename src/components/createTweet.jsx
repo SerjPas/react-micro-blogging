@@ -44,7 +44,7 @@ const CreateTweet = () => {
                     id: userContex.currentUser.id,
                     content: tweetInput,
                     date: new Date().toISOString(),
-                    userName: userContex.currentUser.displayName,
+                    userName: userContex.currentUser.id,
                 });
                 setTweetInput('');
             } catch (error) {
