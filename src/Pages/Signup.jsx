@@ -6,6 +6,7 @@ import {makeStyles} from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
 import {Redirect} from "react-router-dom"
 import UserContext from "../context/UserContext";
+import {db} from "../index";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -42,8 +43,7 @@ const SignUp = () => {
         event.preventDefault();
         setError('');
         try {
-            const user = await signup(email, password);
-            context.handleCurrentUser(user);
+            await signup(email, password);
             setEmail('');
         } catch (error) {
             setError(error.message);
@@ -53,8 +53,7 @@ const SignUp = () => {
 
     async function googleSignIn() {
         try {
-            const user = await signInWithGoogle();
-            context.handleCurrentUser(user);
+            await signInWithGoogle();
         } catch (error) {
             this.setState({error: error.message});
             setPassword('');

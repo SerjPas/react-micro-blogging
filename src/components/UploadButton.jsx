@@ -37,7 +37,6 @@ const UploadButtons = () => {
                 }).then(() => {
                     console.log(user, " edited: " + downloadURL)
                     userContext.handleCurrentUser(user);
-
                 }).catch((error) => {
                     setError(error.message)
                 });

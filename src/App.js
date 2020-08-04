@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import './App.css';
 import TweetPage from './Pages/TweetPage';
 import NavBar from './components/NavBar';
-import Container from 'react-bootstrap/Container'
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Login from './Pages/Login'
@@ -12,6 +10,7 @@ import UserContext from './context/UserContext'
 import {logout} from './auth'
 import {auth} from "./index";
 import UserProfile from "./Pages/UserProfile";
+import Container from "@material-ui/core/Container";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)

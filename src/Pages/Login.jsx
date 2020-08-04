@@ -40,9 +40,7 @@ const Login = () => {
         event.preventDefault();
         setError('');
         try {
-            const user = await signin(email, password);
-            console.log(user , "sign in")
-            context.handleCurrentUser(user);
+            await signin(email, password);
             setEmail('');
         } catch (error) {
             setError(error.message);
@@ -52,8 +50,8 @@ const Login = () => {
 
     async function googleSignIn() {
         try {
-            const user = await signInWithGoogle();
-            context.handleCurrentUser(user);
+            const user=  await signInWithGoogle();
+            console.log(user);
 
         } catch (error) {
             setError(error.message);
