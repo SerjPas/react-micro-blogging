@@ -23,7 +23,7 @@ const UploadButtons = () => {
 
     const handleUpload = (event) => {
         const file = event.target.files[0];
-        const storageRef = firebase.storage().ref('img/' + userContext.currentUser.email);
+        const storageRef = firebase.storage().ref('img/' + userContext.currentUser.id);
         const task = storageRef.put(file);
         task.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
         }, function (error) {
@@ -34,10 +34,13 @@ const UploadButtons = () => {
                 let user = auth().currentUser;
                 user.updateProfile({
                     photoURL: downloadURL
-                }).then(() => {
-                    console.log(user, " edited: " + downloadURL)
-                    userContext.handleCurrentUser(user);
-                }).catch((error) => {
+                }).then(()=>{
+                    userContext.handleCurrentUser({
+                        ...userContext.currentUser,
+                        photoURL: downloadURL,
+                    })
+                })
+                .catch((error) => {
                     setError(error.message)
                 });
             });

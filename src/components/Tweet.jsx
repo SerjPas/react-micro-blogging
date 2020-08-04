@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 const Tweet = (props) => {
     const classes = useStyles();
     const [user, setUser] = useState(null)
-    const userContext = useContext(UserContext);
+    // const userContext = useContext(UserContext);
 
     useEffect(() => {
         firebase
@@ -31,19 +31,19 @@ const Tweet = (props) => {
             .get()
             .then((result) => {
                 const user = result.data();
+                console.log(user)
                 setUser(user);
-                console.log(user, "user from db")
             });
     }, [props.tweet.id]);
-
-    const isCurrentUser =
-        userContext.currentUser && user && userContext.currentUser.id === user.id;
+    //
+    // const isCurrentUser =
+    //     userContext.currentUser && user && userContext.currentUser.id === user.id;
 
     return (
         <ListItem style={{paddingLeft: "0", paddingRight: "0"}}>
             <Card className={classes.root } style={{minHeight: "100px"}}>
                 <CardActions>
-                    <span style={{color: "#6C757D"}}>{props.tweet.userName}</span>
+                    <span style={{color: "#6C757D"}}>{user ? user.displayName ? user.displayName : user.email : ""}</span>
                     <span style={{marginLeft: "auto", color: "#6C757D"}}>{props.tweet.date}</span>
                 </CardActions>
                 <CardActionArea>
