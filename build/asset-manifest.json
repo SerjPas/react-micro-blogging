@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/css/main.833c7f9d.chunk.css",
-    "main.js": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/main.188211fd.chunk.js",
-    "main.js.map": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/main.188211fd.chunk.js.map",
+    "main.js": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/main.ac2079a5.chunk.js",
+    "main.js.map": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/main.ac2079a5.chunk.js.map",
     "runtime-main.js": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/runtime-main.db7bf999.js",
     "runtime-main.js.map": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/runtime-main.db7bf999.js.map",
     "static/js/2.21100eee.chunk.js": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/2.21100eee.chunk.js",
     "static/js/2.21100eee.chunk.js.map": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/2.21100eee.chunk.js.map",
     "index.html": "/israeltechchallenge/react-micro-blogging-SerjPasindex.html",
-    "precache-manifest.5b008b948239978b0918d29e1cf770a5.js": "/israeltechchallenge/react-micro-blogging-SerjPasprecache-manifest.5b008b948239978b0918d29e1cf770a5.js",
+    "precache-manifest.843ac9086e8a113a9f88d9b495585abc.js": "/israeltechchallenge/react-micro-blogging-SerjPasprecache-manifest.843ac9086e8a113a9f88d9b495585abc.js",
     "service-worker.js": "/israeltechchallenge/react-micro-blogging-SerjPasservice-worker.js",
     "static/css/main.833c7f9d.chunk.css.map": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/css/main.833c7f9d.chunk.css.map",
     "static/js/2.21100eee.chunk.js.LICENSE.txt": "/israeltechchallenge/react-micro-blogging-SerjPasstatic/js/2.21100eee.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.db7bf999.js",
     "static/js/2.21100eee.chunk.js",
     "static/css/main.833c7f9d.chunk.css",
-    "static/js/main.188211fd.chunk.js"
+    "static/js/main.ac2079a5.chunk.js"
   ]
 }

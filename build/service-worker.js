@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/israeltechchallenge/react-micro-blogging-SerjPasprecache-manifest.5b008b948239978b0918d29e1cf770a5.js"
+  "/israeltechchallenge/react-micro-blogging-SerjPasprecache-manifest.843ac9086e8a113a9f88d9b495585abc.js"
 );
 
 self.addEventListener('message', (event) => {

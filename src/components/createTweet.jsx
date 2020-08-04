@@ -3,7 +3,7 @@ import {Card, TextField, Button} from "@material-ui/core";
 import Error140 from "./Error140";
 import TweetContext from "../context/TweetContext";
 import {makeStyles} from "@material-ui/styles";
-import {auth, db} from "../index";
+import {db} from "../index";
 import UserContext from "../context/UserContext";
 
 const useStyles = makeStyles(() => ({
@@ -41,10 +41,10 @@ const CreateTweet = () => {
             try {
                 contex.handleLoad(true)
                 await db.ref("tweets").push({
-                    id: userContex.currentUser.id,
+                    id: userContex.currentUser.uid,
                     content: tweetInput,
                     date: new Date().toISOString(),
-                    userName: auth().currentUser.uid,
+                    userName: userContex.currentUser.displayName,
                 });
                 setTweetInput('');
             } catch (error) {
