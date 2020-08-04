@@ -8,9 +8,11 @@ import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import UserContext from './context/UserContext'
 import {logout} from './auth'
-import {auth} from "./index";
 import UserProfile from "./Pages/UserProfile";
 import Container from "@material-ui/core/Container";
+import * as firebase from "firebase";
+import "firebase/auth";
+import "firebase/firestore";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -28,10 +30,26 @@ function App() {
   }
 
   useEffect(() => {
-    return auth().onAuthStateChanged((user) => {
-      user ? handleCurrentUser(user) : handleCurrentUser(null);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        setCurrentUser(null);
+      } else {
+        const loggedInUser = {
+          id: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        };
+        setCurrentUser(loggedInUser);
+        firebase
+            .firestore()
+            .collection("users")
+            .doc(loggedInUser.id)
+            .set(loggedInUser)
+            .then();
+      }
     });
-  });
+  }, []);
 
   return (
       <div>
@@ -39,12 +57,12 @@ function App() {
         >
           <Router>
             <CssBaseline/>
-            <Container>
-              <Grid container style={{justifyContent: "center", display: "flex"}}>
-                <Grid item xs={12} lg={8}>
-                  <NavBar/>
-                </Grid>
+            <Grid container style={{justifyContent: "center", display: "flex"}}>
+              <Grid item xs={12} lg={8}>
+                <NavBar/>
               </Grid>
+            </Grid>
+            <Container>
               <Switch>
                 <Route exact path="/signup">
                   <Signup/>

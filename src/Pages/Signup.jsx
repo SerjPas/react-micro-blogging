@@ -55,7 +55,7 @@ const SignUp = () => {
         try {
             await signInWithGoogle();
         } catch (error) {
-            this.setState({error: error.message});
+            setError(error.message);
             setPassword('');
         }
     }
