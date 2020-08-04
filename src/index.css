@@ -141,7 +141,7 @@ code {
   margin: 10px 0 10px 0;
 }
 
-.logout-button{
+.logout-login{
   margin-left: auto;
 }
 
@@ -161,4 +161,9 @@ code {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.upload{
+  display: flex;
+  justify-content: center;
 }

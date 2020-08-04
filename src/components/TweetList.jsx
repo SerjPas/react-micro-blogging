@@ -23,7 +23,7 @@ const TweetList = () => {
   const classes = useStyles();
   const contex = useContext(TweetContext);
   const userContex = useContext(UserContext);
-  console.log(userContex)
+
   return (
       <List className="form-revers">
         {contex.tweets.map((item) => (
