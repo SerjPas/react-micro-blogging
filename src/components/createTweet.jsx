@@ -41,7 +41,7 @@ const CreateTweet = () => {
             try {
                 contex.handleLoad(true)
                 await db.ref("tweets").push({
-                    id: userContex.currentUser.id,
+                    id:Date.now() + "",
                     content: tweetInput,
                     date: new Date().toISOString(),
                     userName: userContex.currentUser.id,

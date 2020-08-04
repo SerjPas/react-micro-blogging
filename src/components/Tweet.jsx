@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import {makeStyles} from "@material-ui/core/styles";
-import UserContext from "../context/UserContext";
 import * as firebase from "firebase";
 import {Typography} from "@material-ui/core";
 
@@ -21,20 +20,18 @@ const useStyles = makeStyles({
 const Tweet = (props) => {
     const classes = useStyles();
     const [user, setUser] = useState(null)
-    // const userContext = useContext(UserContext);
 
     useEffect(() => {
         firebase
             .firestore()
             .collection("users")
-            .doc(props.tweet.id)
+            .doc(props.tweet.userName)
             .get()
             .then((result) => {
                 const user = result.data();
-                console.log(user)
                 setUser(user);
             });
-    }, [props.tweet.id]);
+    }, [props.tweet.userName, user]);
     //
     // const isCurrentUser =
     //     userContext.currentUser && user && userContext.currentUser.id === user.id;

@@ -37,12 +37,20 @@ const UploadButtons = () => {
                 }).then(()=>{
                     userContext.handleCurrentUser({
                         ...userContext.currentUser,
-                        photoURL: downloadURL,
+                        photoURL: user.photoURL,
                     })
+                    const userRef = firebase
+                        .firestore()
+                        .collection("users")
+                        .doc(user.uid);
+                    userRef.update({
+                        ...userContext.currentUser,
+                        photoURL: user.photoURL,
+                    }).then();
                 })
                 .catch((error) => {
                     setError(error.message)
-                });
+                })
             });
         });
     }

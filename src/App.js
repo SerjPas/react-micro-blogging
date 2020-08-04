@@ -13,6 +13,7 @@ import Container from "@material-ui/core/Container";
 import * as firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
+import {auth, db} from "./index";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
