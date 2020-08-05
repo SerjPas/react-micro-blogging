@@ -3,8 +3,8 @@ import {Card, TextField, Button} from "@material-ui/core";
 import Error140 from "./Error140";
 import TweetContext from "../context/TweetContext";
 import {makeStyles} from "@material-ui/styles";
-import {db} from "../index";
 import UserContext from "../context/UserContext";
+import * as firebase from "firebase";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -36,22 +36,24 @@ const CreateTweet = () => {
         if (event) {
             event.preventDefault();
         }
-
         if (tweetInput !== "") {
+            contex.handleLoad(true)
             try {
-                contex.handleLoad(true)
-                await db.ref("tweets").push({
-                    id:Date.now() + "",
-                    content: tweetInput,
-                    date: new Date().toISOString(),
-                    userName: userContex.currentUser.id,
-                });
-                setTweetInput('');
+                await firebase
+                    .firestore()
+                    .collection("tweets")
+                    .add({
+                        id: Date.now() + "",
+                        content: tweetInput,
+                        date: new Date().toISOString(),
+                        userName: userContex.currentUser.id,
+                    });
+                setTweetInput("");
             } catch (error) {
                 contex.handleErrorMessage(error.message);
             }
         }
-    };
+    }
 
     const onEnterPress = (event) => {
         if (event.keyCode === 13 && event.shiftKey === false) {
@@ -94,4 +96,5 @@ const CreateTweet = () => {
         </Card>
     );
 };
+
 export default CreateTweet;

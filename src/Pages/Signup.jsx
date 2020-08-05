@@ -6,7 +6,6 @@ import {makeStyles} from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
 import {Redirect} from "react-router-dom"
 import UserContext from "../context/UserContext";
-import {db} from "../index";
 
 const useStyles = makeStyles(() => ({
     root: {

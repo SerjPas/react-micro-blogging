@@ -7,7 +7,7 @@ const TweetList = () => {
   const context = useContext(TweetContext);
 
   return (
-      <List className="form-revers">
+      <List>
         {context.tweets.map((item) => (
             <Tweet key={item.id} tweet={item} />
         ))}

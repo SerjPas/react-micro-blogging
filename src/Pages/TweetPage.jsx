@@ -5,7 +5,7 @@ import TweetList from "../components/TweetList";
 import LoadingIndicator from "../components/Loader";
 import TweetContext from "../context/TweetContext";
 import {usePromiseTracker} from "react-promise-tracker";
-import {db} from "../index";
+import * as firebase from "firebase";
 
 const TweetPage = () => {
     const [tweets, setTweets] = useState([]);
@@ -14,20 +14,27 @@ const TweetPage = () => {
     const {promiseInProgress} = usePromiseTracker();
 
     useEffect(() => {
-        try {
-
-            db.ref("tweets").limitToLast(5).on("value", snapshot => {
-                let tweets = [];
-                snapshot.forEach((snap) => {
-                    tweets.push(snap.val());
-                });
-                setTweets(tweets);
-                setLoad(false)
-            });
-        } catch (error) {
-            setErrorMessage(error.message);
-        }
-    }, []);
+            try {
+                firebase
+                    .firestore()
+                    .collection("tweets")
+                    .orderBy('date', 'desc')
+                    .onSnapshot((snap) => {
+                        const tweets = snap.docs.map((doc) => {
+                            return {
+                                id: doc.id,
+                                ...doc.data(),
+                                date: new Date(doc.data().date.seconds * 1000) +""
+                            };
+                        });
+                        setTweets(tweets);
+                        setLoad(false)
+                    });
+            } catch
+                (error) {
+                setErrorMessage(error.message);
+            }
+        } ,[]);
 
 
     const addTweet = (tweet) => {
